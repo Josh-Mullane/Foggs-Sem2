@@ -16,5 +16,7 @@ public:
 	void Display();
 
 	void DrawPolygon();
+
+	void Update();
 };
 

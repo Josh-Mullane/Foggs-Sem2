@@ -14,14 +14,24 @@ HelloGL::HelloGL(int argc, char* argv[])
 void HelloGL::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	glBegin(GL_POLYGON);
-		glColor4f(1.0f, 0.0f, 1.0f, 0.0f);
-		glVertex2f(-0.75, 0.5);
-		glVertex2f(0.75, 0.5);
-		glVertex2f(0.75, -0.5);
-		glVertex2f(-0.75, -0.5);
-		glEnd();
+	DrawPolygon();
 	glFlush();
+}
+
+void HelloGL::Update()
+{
+	glutPostRedisplay();
+}
+
+void HelloGL::DrawPolygon()
+{
+	glBegin(GL_POLYGON);
+	glColor4f(1.0f, 0.0f, 1.0f, 0.0f);
+	glVertex2f(-0.75, 0.5);
+	glVertex2f(0.75, 0.5);
+	glVertex2f(0.75, -0.5);
+	glVertex2f(-0.75, -0.5);
+	glEnd();
 }
 
 HelloGL::~HelloGL(void)
