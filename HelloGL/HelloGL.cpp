@@ -7,6 +7,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	GLUTCallbacks::Init(this);
 
 	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE);
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
 	glutDisplayFunc(GLUTCallbacks::Display);
@@ -22,6 +23,7 @@ void HelloGL::Display()
 	DrawPolygon();
 	glPopMatrix();
 	glFlush();
+	glutSwapBuffers();
 
 
 }
@@ -32,6 +34,8 @@ void HelloGL::Update()
 	rotation += 0.5f;
 	if (rotation >= 360.0f)
 		rotation = 0.0f;
+
+	/*Sleep(10);*/
 }
 
 
