@@ -1,6 +1,5 @@
-﻿  GLUTCallbacks.cpp
+﻿  main.cpp
   HelloGL.cpp
-  main.cpp
+  GLUTCallbacks.cpp
   Generating Code...
-  LINK : C:\Users\m014035m\Documents\GitHub\Foggs-Sem2\HelloGL\Debug\HelloGL.exe not found or not built by the last incremental link; performing full link
-  HelloGL.vcxproj -> C:\Users\m014035m\Documents\GitHub\Foggs-Sem2\HelloGL\Debug\HelloGL.exe
+  HelloGL.vcxproj -> C:\Users\joshu\OneDrive\Documents\GitHub\Foggs-Sem2\HelloGL\Debug\HelloGL.exe

@@ -30,4 +30,9 @@ namespace GLUTCallbacks
 		}
 		updateTime = glutGet(GLUT_ELAPSED_TIME) - updateTime;
 	}
+
+	void Keyboard(unsigned char key, int x, int y)
+	{
+		glutKeyboardFunc(GLUTCallbacks::Keyboard);
+	}
 }

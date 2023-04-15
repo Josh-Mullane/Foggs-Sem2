@@ -51,6 +51,16 @@ void HelloGL::DrawPolygon()
 	glEnd();
 }
 
+void HelloGL::Keyboard(unsigned char key, int x, int y)
+{
+	if (key == 'd')
+		rotation += 0.5f;
+	if (key == 'a')
+		rotation -= 0.5f;
+
+
+}
+
 HelloGL::~HelloGL(void)
 {
 
