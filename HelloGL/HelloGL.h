@@ -7,6 +7,32 @@
 
 #define REFRESHRATE 16
 
+class Vector3
+{
+public:
+	float x, y, z;
+};
+
+class Camera
+{
+public:
+	Vector3 eye;
+	Vector3 centre;
+	Vector3 up;
+};
+
+struct Colour
+{
+	GLfloat r, g, b;
+};
+
+struct Vertex
+{
+	GLfloat x, y, z;
+};
+
+static Vertex vertices[];
+static Colour colours[];
 
 class HelloGL
 {
@@ -23,7 +49,14 @@ public:
 
 	void Keyboard(unsigned char key, int x, int y);
 
+	void DrawCube();
+
+	void DrawCubeArray();
+
+	Camera* camera;
+
 private:
 	float rotation;
 };
+
 
