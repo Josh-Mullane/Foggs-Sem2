@@ -1,13 +1,30 @@
 #include "HelloGL.h"
 
-Vertex HelloGL::vertices[] = {1,1,1, -1,1,1, -1,-1,1, 
+Vertex HelloGL::vertices[] = { 1,1,1, -1,1,1, -1,-1,1,
 							  -1,-1,1, 1,-1,1, 1,1,1,
 							  1,1,1, 1,-1,1, 1,-1,-1,
 							  1,-1,-1, 1,1,-1, 1,1,1,
 							  1,1,1, 1,1,-1, -1,-1,-1,
 							  -1,-1,-1, -1,-1,1, -1,1,1,
-							  }
+							  -1,1,1, 1,1,-1, -1,-1,-1,
+							  -1,-1,-1, -1,-1,1, -1,1,1,
+							  -1,-1,-1, 1,-1,-1, 1,-1,1,
+							  1,-1,1, 1,1,-1, 1,-1,-1,
+							  1,-1,-1, -1,-1,-1, -1,1,-1,
+							  -1,1,-1, 1,1,-1, 1,-1,-1 };
 
+Colour HelloGL::colours[] = { 1,1,1, 1,1,0, 1,0,0,
+							 1,0,0, 1,0,1, 1,1,1,
+							 1,1,1, 1,0,1, 0,0,1,
+							 0,0,1, 0,1,1, 1,1,1,
+							 1,1,1, 0,1,1, 0,1,0,
+							 0,1,0, 1,1,0, 1,1,1,
+							 1,1,0, 0,1,0, 0,0,0,
+							 0,0,0, 1,0,0, 1,1,0,
+							 0,0,0, 0,0,1, 1,0,1, 
+							 1,0,1, 1,0,0, 0,0,0,
+							 0,0,1, 0,0,0, 0,1,0,
+							 0,1,0, 0,1,1, 0,0,1 };
 HelloGL::HelloGL(int argc, char* argv[])
 {
 	rotation = 0.0f;
@@ -42,7 +59,7 @@ void HelloGL::Display()
 	glRotatef(rotation, 1.0f,-1.0f, -1.0f);
 	/*DrawPolygon();*/
 	/*glutWireTeapot(2);*/
-	DrawCube();
+	DrawCubeArray();
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -62,7 +79,20 @@ void HelloGL::Update()
 	/*Sleep(10);*/
 }
 
+void HelloGL::DrawCubeArray()
+{
+	glPushMatrix();
 
+	glBegin(GL_TRIANGLES);
+	for (int i = 0; i < 36; ++i)
+	{
+		glColor3fv(&colours[i].r);
+		glVertex3fv(&vertices[i].x);
+	}
+	glEnd();
+
+	glPopMatrix();
+}
 
 void HelloGL::DrawPolygon()
 {

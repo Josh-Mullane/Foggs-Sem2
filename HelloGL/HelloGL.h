@@ -31,8 +31,6 @@ struct Vertex
 	GLfloat x, y, z;
 };
 
-static Vertex vertices[];
-static Colour colours[];
 
 class HelloGL
 {
@@ -54,6 +52,9 @@ public:
 	void DrawCubeArray();
 
 	Camera* camera;
+
+	static Vertex vertices[];
+	static Colour colours[];
 
 private:
 	float rotation;
