@@ -5,12 +5,17 @@
 #include "GL\freeglut.h"
 #include "Structures.h"
 
+
 class Cube
 {
 private:
 	static Vertex indexedVertices[];
 	static Colour indexedColours[];
 	static GLushort indices[];
+
+	GLfloat _rotation;
+
+	Vector3 _position;
 public:
 	Cube();
 	~Cube();

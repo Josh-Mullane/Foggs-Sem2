@@ -5,6 +5,7 @@
 #include "GL\freeglut.h"
 #include "GLUTCallbacks.h"
 #include "Structures.h"
+#include "Cube.h"
 
 #define REFRESHRATE 16
 
@@ -29,6 +30,8 @@ public:
 	void DrawIndexedCube();
 
 	Camera* camera;
+
+	Cube* cube[200];
 
 	
 

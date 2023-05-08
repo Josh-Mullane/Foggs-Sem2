@@ -5,6 +5,7 @@
 
 
 
+
 HelloGL::HelloGL(int argc, char* argv[])
 {
 	rotation = 0.0f;
@@ -12,7 +13,8 @@ HelloGL::HelloGL(int argc, char* argv[])
 	GLUTCallbacks::Init(this);
 
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
+	glEnable(GL_DEPTH_TEST);
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
 	glutDisplayFunc(GLUTCallbacks::Display);
@@ -20,6 +22,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 1.0f;
 	camera->centre.x = 0.0f; camera->centre.y = 0.0f; camera->centre.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
+
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -33,13 +36,12 @@ HelloGL::HelloGL(int argc, char* argv[])
 
 void HelloGL::Display()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
 	glTranslatef(0.0f, 0.0f, -5.0f);
 	glRotatef(rotation, 1.0f,-1.0f, -1.0f);
-	/*DrawPolygon();*/
 	/*glutWireTeapot(2);*/
-	/*DrawIndexedCube();*/
+	cube->Draw();
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -52,6 +54,8 @@ void HelloGL::Update()
 	glLoadIdentity();
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->centre.x, camera->centre.y, camera->centre.z, camera->up.x, camera->up.y, camera->up.z);
 	glutPostRedisplay();
+
+	cube->Update();
 	rotation += 0.5f;
 	if (rotation >= 360.0f)
 		rotation = 0.0f;
@@ -61,31 +65,18 @@ void HelloGL::Update()
 
 
 
-//void HelloGL::DrawIndexedCube()
-//{
-//	glPushMatrix();
-//		
-//	glBegin(GL_TRIANGLES);
-//	for (int i = 0; i < 36; ++i)
-//	{
-//		glColor3fv(&indexedColours[indices[i]].r);
-//		glVertex3f(indexedVertices[indices[i]].x, indexedVertices[indices[i]].y, indexedVertices[indices[i]].z);
-//	}
-//	glEnd();
-//
-//	glPopMatrix();
-//}
 
-void HelloGL::DrawPolygon()
-{
-	glBegin(GL_POLYGON);
-	glColor4f(1.0f, 0.0f, 1.0f, 0.0f);
-	glVertex2f(-0.75, 0.5);
-	glVertex2f(0.75, 0.5);
-	glVertex2f(0.75, -0.5);
-	glVertex2f(-0.75, -0.5);
-	glEnd();
-}
+
+//void HelloGL::DrawPolygon()
+//{
+//	glBegin(GL_POLYGON);
+//	glColor4f(1.0f, 0.0f, 1.0f, 0.0f);
+//	glVertex2f(-0.75, 0.5);
+//	glVertex2f(0.75, 0.5);
+//	glVertex2f(0.75, -0.5);
+//	glVertex2f(-0.75, -0.5);
+//	glEnd();
+//}
 
 void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
