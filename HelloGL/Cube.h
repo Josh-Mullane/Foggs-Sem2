@@ -13,6 +13,8 @@ private:
 	static Colour indexedColours[];
 	static GLushort indices[];
 
+	static int numVertices, numColours, numIndices;
+
 	GLfloat _rotation;
 
 	Vector3 _position;
