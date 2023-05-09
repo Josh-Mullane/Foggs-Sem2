@@ -23,6 +23,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	camera->centre.x = 0.0f; camera->centre.y = 0.0f; camera->centre.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 
+	
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -31,7 +32,16 @@ HelloGL::HelloGL(int argc, char* argv[])
 	glMatrixMode(GL_MODELVIEW);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
+
+	for (int i = 0; i < 200; ++i)
+	{
+		cube[i] = new Cube(((rand() & 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+	}
 	glutMainLoop();
+
+
+	
+
 }
 
 void HelloGL::Display()
@@ -41,7 +51,8 @@ void HelloGL::Display()
 	glTranslatef(0.0f, 0.0f, -5.0f);
 	glRotatef(rotation, 1.0f,-1.0f, -1.0f);
 	/*glutWireTeapot(2);*/
-	cube->Draw();
+	for (int i = 0; i < 200; ++i)
+		cube[i]->Draw();
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -54,29 +65,14 @@ void HelloGL::Update()
 	glLoadIdentity();
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->centre.x, camera->centre.y, camera->centre.z, camera->up.x, camera->up.y, camera->up.z);
 	glutPostRedisplay();
-
-	cube->Update();
+	for(int i = 0; i < 200; ++i)
+		cube[i]->Update();
 	rotation += 0.5f;
 	if (rotation >= 360.0f)
 		rotation = 0.0f;
 
 	/*Sleep(10);*/
 }
-
-
-
-
-
-//void HelloGL::DrawPolygon()
-//{
-//	glBegin(GL_POLYGON);
-//	glColor4f(1.0f, 0.0f, 1.0f, 0.0f);
-//	glVertex2f(-0.75, 0.5);
-//	glVertex2f(0.75, 0.5);
-//	glVertex2f(0.75, -0.5);
-//	glVertex2f(-0.75, -0.5);
-//	glEnd();
-//}
 
 void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
@@ -87,8 +83,6 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 
 
 }
-
-
 
 HelloGL::~HelloGL(void)
 {

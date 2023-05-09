@@ -1,7 +1,2 @@
 ﻿  Cube.cpp
-  GLUTCallbacks.cpp
-  HelloGL.cpp
-C:\Users\joshu\OneDrive\Documents\GitHub\Foggs-Sem2\HelloGL\HelloGL.cpp(44,8): error C2227: left of '->Draw' must point to class/struct/union/generic type
-C:\Users\joshu\OneDrive\Documents\GitHub\Foggs-Sem2\HelloGL\HelloGL.cpp(44,8): message : type is 'Cube *[200]'
-  main.cpp
-  Generating Code...
+  HelloGL.vcxproj -> C:\Users\joshu\OneDrive\Documents\GitHub\Foggs-Sem2\HelloGL\Debug\HelloGL.exe

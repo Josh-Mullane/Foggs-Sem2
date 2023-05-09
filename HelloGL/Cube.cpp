@@ -1,10 +1,12 @@
 #include "Cube.h"
-
-Cube::Cube()
+#include "HelloGL.h"
+Cube::Cube(float _positionx, float _positiony, float _positionz)
 {
-	_position.x = 1.0f;
-	_position.y = 1.0f;
-	_position.z = 1.0f;
+	_position.x = _positionx;
+	_position.y = _positiony;
+	_position.z = _positionz;
+
+	
 }
 
 
@@ -13,8 +15,8 @@ void Cube::Draw()
 {
 	{
 		glPushMatrix();
-
 		glBegin(GL_TRIANGLES);
+
 		for (int i = 0; i < 36; ++i)
 		{
 			glColor3fv(&indexedColours[indices[i]].r);
@@ -22,8 +24,9 @@ void Cube::Draw()
 		}
 		
 		glEnd();
-		glTranslatef(_position.x, _position.y, _position.z);
 		glPopMatrix();
+		glLoadIdentity();
+		glTranslatef(_position.x, _position.y, _position.z);
 	}
 
 }
