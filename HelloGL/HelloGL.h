@@ -25,6 +25,9 @@ public:
 
 	void Keyboard(unsigned char key, int x, int y);
 
+	void InitObjects();
+	void InitGL(int argc, char* argv[]);
+
 	Camera* camera;
 
 	Cube* cube[200];

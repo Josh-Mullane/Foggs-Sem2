@@ -1,4 +1,6 @@
 ﻿  Cube.cpp
+  GLUTCallbacks.cpp
   HelloGL.cpp
+  main.cpp
   Generating Code...
   HelloGL.vcxproj -> C:\Users\joshu\OneDrive\Documents\GitHub\Foggs-Sem2\HelloGL\Debug\HelloGL.exe

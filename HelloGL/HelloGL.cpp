@@ -2,29 +2,34 @@
 #include "Structures.h"
 #include "Cube.h"
 
-
-
-
-
-HelloGL::HelloGL(int argc, char* argv[])
+void HelloGL::InitObjects()
 {
+
 	rotation = 0.0f;
-
-	GLUTCallbacks::Init(this);
-
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
-	glEnable(GL_DEPTH_TEST);
-	glutInitWindowSize(800, 800);
-	glutCreateWindow("Simple OpenGL Program");
-	glutDisplayFunc(GLUTCallbacks::Display);
 	camera = new Camera();
 	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 1.0f;
 	camera->centre.x = 0.0f; camera->centre.y = 0.0f; camera->centre.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 
 	Cube::Load((char*)"cube.txt");
-	
+
+
+
+	for (int i = 0; i < 200; ++i)
+	{
+		cube[i] = new Cube(((rand() & 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+	}
+}
+
+void HelloGL::InitGL(int argc, char* argv[])
+{
+	GLUTCallbacks::Init(this);
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
+	glEnable(GL_DEPTH_TEST);
+	glutInitWindowSize(800, 800);
+	glutCreateWindow("Simple OpenGL Program");
+	glutDisplayFunc(GLUTCallbacks::Display);
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -34,14 +39,17 @@ HelloGL::HelloGL(int argc, char* argv[])
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	
-	for (int i = 0; i < 200; ++i)
-	{
-		cube[i] = new Cube(((rand() & 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-	}
-	glutMainLoop();
+}
 
+HelloGL::HelloGL(int argc, char* argv[])
+{
 
+	InitObjects();
+	InitGL(argc, argv);
 	
+	glutMainLoop();
+	
+
 
 }
 
