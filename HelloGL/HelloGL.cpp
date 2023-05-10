@@ -23,6 +23,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	camera->centre.x = 0.0f; camera->centre.y = 0.0f; camera->centre.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 
+	Cube::Load((char*)"cube.txt");
 	
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 	glMatrixMode(GL_PROJECTION);
@@ -32,7 +33,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	glMatrixMode(GL_MODELVIEW);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-
+	
 	for (int i = 0; i < 200; ++i)
 	{
 		cube[i] = new Cube(((rand() & 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
@@ -60,8 +61,12 @@ void HelloGL::Display()
 
 }
 
+
+
 void HelloGL::Update()
 {
+	
+
 	glLoadIdentity();
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->centre.x, camera->centre.y, camera->centre.z, camera->up.x, camera->up.y, camera->up.z);
 	glutPostRedisplay();
