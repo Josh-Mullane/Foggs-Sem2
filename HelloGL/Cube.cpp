@@ -11,11 +11,11 @@ int Cube::numVertices = 0;
 int Cube::numColours = 0;
 int Cube::numIndices = 0;
 
-Cube::Cube(float _positionx, float _positiony, float _positionz)
+Cube::Cube(Mesh* mesh, float x, float y, float z)
 {
-	_position.x = _positionx;
-	_position.y = _positiony;
-	_position.z = _positionz;
+	_position.x = x;
+	_position.y = y;
+	_position.z = z;
 
 	
 }
@@ -62,15 +62,15 @@ bool Cube::Load(char* path)
 void Cube::Draw()
 {
 	{
-		if (indexedVertices != nullptr && indexedColours != nullptr && indices != nullptr)
+		if (_mesh->Vertices != nullptr && _mesh->Colours != nullptr && _mesh->Indices != nullptr)
 		{
 			glPushMatrix();
 			glBegin(GL_TRIANGLES);
 
 			for (int i = 0; i < 36; ++i)
 			{
-				glColor3fv(&indexedColours[indices[i]].r);
-				glVertex3f(indexedVertices[indices[i]].x, indexedVertices[indices[i]].y, indexedVertices[indices[i]].z);
+				glColor3fv(&_mesh->Vertices[_mesh->Indices[i]].r);
+				glVertex3f(_mesh->Vertices[_mesh->Indices[i]].x, _mesh->Vertices[_mesh->Indices[i]].y, _mesh->Vertices[_mesh->Indices[i]].z);
 			}
 
 			glEnd();
